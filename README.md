@@ -1,8 +1,13 @@
-# Calculate 3D Points from a stereo image pair
-This small program is actually the rewritten code of some parts of another repository of mine ((6DOF Stereo EKF SLAM)[https://github.com/srv/6dof_stereo_ekf_slam]) in C++ using openCV instead of MatLab.
+<head>
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+</head>
+# Calculates 3D Points from a stereo image pair
+This small program is actually the rewritten code of some parts of another repository of mine ([6DOF Stereo EKF SLAM](https://github.com/srv/6dof_stereo_ekf_slam)) in C++ instead of MatLab.
 
 ## what it does
-it takes a stereo image pair, in this case given by the stereo camera rig bumblebee2 and the corresponding reprojection matrix Q to calculate 3D Points from corresponding SIFT Features.
+It takes a stereo image pair, in this case given by the stereo camera rig Bumblebee2 and the corresponding reprojection matrix Q to calculate 3D Points from corresponding SIFT Features.
 
 ## requires
 * cmake 2.8
