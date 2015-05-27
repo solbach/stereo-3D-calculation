@@ -12,12 +12,13 @@ int main(int argc, char** argv )
     }
 
     Mat imageLeft, imageRight;
-    imageLeft = imread( argv[1], 1 );
-    imageRight = imread( argv[2], 2 );
 
-    if ( !image.data )
+    std::cout << "output: " << argv[1] << std::endl;
+    std::cout << "output: " << argv[2] << std::endl;
+
+    if ( !imageLeft.data || !imageRight.data)
     {
-        printf("No image data \n");
+        printf("On or more image data are missing \n");
         return -1;
     }
     namedWindow("Display left Image", WINDOW_AUTOSIZE );
