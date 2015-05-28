@@ -17,6 +17,7 @@ int main(int argc, char** argv )
     }
 
     Mat imageLeft, imageRight, grayLeft, grayRight, outputLeft, outputRight;
+    Mat leftBlur, rightBlur;
 
     imageLeft = imread( argv[1], 1 );
     imageRight = imread( argv[2], 1 );
@@ -26,6 +27,12 @@ int main(int argc, char** argv )
         readme();
         return -1;
     }
+
+    // sharpen images
+    GaussianBlur(imageLeft, leftBlur, Size(0, 0), 3);
+    addWeighted(imageLeft, 3, leftBlur, -2, 0, imageLeft);
+    GaussianBlur(imageRight, rightBlur, Size(0, 0), 3);
+    addWeighted(imageRight, 3, rightBlur, -2, 0, imageRight);
 
     std::cout << "[successfull] load images" << std::endl;
 
@@ -65,9 +72,16 @@ int main(int argc, char** argv )
     std::cout << "## Min dist.: " << min_dist << std::endl;
 
     std::vector<DMatch> inliers;
+    std::vector<Point2f> leftImagePoints;
+    std::vector<Point2f> rightImagePoints;
+
     for (int j = 0; j < descriptorsLeft.rows; ++j) {
-        if( matches[j].distance <= max(2*min_dist, 0.01) )
-            inliers.push_back( matches[j]);
+
+        leftImagePoints.push_back( keypointsLeft[ matches[j].queryIdx ].pt );
+        rightImagePoints.push_back( keypointsRight[ matches[j].trainIdx ].pt );
+
+        if( matches[j].distance <= max(2*min_dist, 0.02) )
+            inliers.push_back( matches[j] );
     }
 
     // Draw Inliers
@@ -86,7 +100,8 @@ int main(int argc, char** argv )
 
     for( int i = 0; i < (int)inliers.size(); i++ )
     { printf( "## Inlier [%d] Keypoint 1: %d  -- Keypoint 2: %d  \n",
-              i, inliers[i].queryIdx, inliers[i].trainIdx ); }
+              i, inliers[i].queryIdx, inliers[i].trainIdx );
+    }
 
     std::cout << "[successfull] show windows" << std::endl;
 
