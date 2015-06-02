@@ -15,7 +15,7 @@ int main(int argc, char** argv )
     if ( argc != 4 )
     {
         std::cout << "usage: stereo-3D-calculation.out <Left_Image_Path>" <<
-                     "<Right_Image_Path> <output.txt>\n" << std::endl;
+                     "<Right_Image_Path> <output.bin>\n" << std::endl;
         return -1;
     }
 
