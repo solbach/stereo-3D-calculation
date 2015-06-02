@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <fstream>
 #include <opencv2/opencv.hpp>
 #include <opencv2/nonfree/features2d.hpp>
 
@@ -11,10 +12,10 @@ Mat getReprojMat();
 int main(int argc, char** argv )
 {
     // load images
-    if ( argc != 3 )
+    if ( argc != 4 )
     {
         std::cout << "usage: stereo-3D-calculation.out <Left_Image_Path>" <<
-                     "<Right_Image_Path>\n" << std::endl;
+                     "<Right_Image_Path> <output.txt>\n" << std::endl;
         return -1;
     }
 
@@ -121,6 +122,10 @@ int main(int argc, char** argv )
     Point2d leftPoint, rightPoint;
     double disparity;
 
+    // prepare for stream data to file
+    std::ofstream output;
+    output.open( argv[3] );
+
     for ( std::vector<Point2d>::size_type l = 0; l != leftImagePoints.size();
           l++) {
 
@@ -130,8 +135,37 @@ int main(int argc, char** argv )
         disparity = leftPoint.x - rightPoint.x;
 
         Point3d point3 = calc3DPoint( leftPoint, disparity, Q );
-        std::cout << point3 << std::endl;
+        // std::cout << "## 3d Point [" << l << "]: " << point3 << std::endl;
+
+        // stream data to file
+        if ( l == 0 )
+        {
+            std::cout << "points = [ " << point3.x << ", " << point3.y << ", "
+                      << point3.z << "; ..." << std::endl;
+
+            output << "points = [ " << point3.x << ", " << point3.y << ", "
+                   << point3.z << "; ... \n";
+        }
+        else if ( l == leftImagePoints.size() - 1 )
+        {
+            std::cout << point3.x << ", " << point3.y << ", " << point3.z
+                      << "];" << std::endl;
+
+            output << point3.x << ", " << point3.y << ", " << point3.z
+                   << "];";
+        }
+        else
+        {
+            std::cout << point3.x << ", " << point3.y << ", " << point3.z
+                      << "; ..." << std::endl;
+
+            output << point3.x << ", " << point3.y << ", " << point3.z
+                   << "; ... \n";
+        }
     }
+
+    // close stream data
+    output.close();
 
     //waitKey(0);
 
