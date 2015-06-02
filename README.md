@@ -1,4 +1,4 @@
-<head>
+d>
     <script type="text/javascript"
             src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
@@ -26,3 +26,4 @@ It takes a stereo image pair, in this case given by the stereo camera rig Bumble
 
 ## literature
 * Siciliano, Bruno, and Oussama Khatib. _Springer Handbook of Robotics_. Berlin: Springer, 2008. Print.
+
