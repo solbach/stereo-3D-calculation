@@ -124,7 +124,7 @@ int main(int argc, char** argv )
 
     // prepare for stream data to file
     std::ofstream output;
-    output.open( argv[3] );
+    output.open( argv[3], std::ofstream::binary );
 
     for ( std::vector<Point2d>::size_type l = 0; l != leftImagePoints.size();
           l++) {
@@ -143,24 +143,26 @@ int main(int argc, char** argv )
             std::cout << "points = [ " << point3.x << ", " << point3.y << ", "
                       << point3.z << "; ..." << std::endl;
 
-            output << "points = [ " << point3.x << ", " << point3.y << ", "
-                   << point3.z << "; ... \n";
+            if ( output.is_open() )
+                output << point3.x << "," << point3.y << ","
+                       << point3.z << " \n ";
         }
         else if ( l == leftImagePoints.size() - 1 )
         {
             std::cout << point3.x << ", " << point3.y << ", " << point3.z
                       << "];" << std::endl;
 
-            output << point3.x << ", " << point3.y << ", " << point3.z
-                   << "];";
+            if ( output.is_open() )
+                output << point3.x << "," << point3.y << "," << point3.z;
         }
         else
         {
             std::cout << point3.x << ", " << point3.y << ", " << point3.z
                       << "; ..." << std::endl;
 
-            output << point3.x << ", " << point3.y << ", " << point3.z
-                   << "; ... \n";
+            if ( output.is_open() )
+                output << point3.x << "," << point3.y << "," << point3.z
+                       << "\n ";
         }
     }
 
