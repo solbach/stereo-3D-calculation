@@ -30,3 +30,6 @@ It takes a stereo image pair, in this case given by the stereo camera rig Bumble
 ## literature
 * Siciliano, Bruno, and Oussama Khatib. _Springer Handbook of Robotics_. Berlin: Springer, 2008. Print.
 
+## example output
+![Example Output](/stere_matching.png?raw=true "Example Output")
+
