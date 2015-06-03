@@ -169,7 +169,7 @@ int main(int argc, char** argv )
     // close stream data
     output.close();
 
-    //waitKey(0);
+    waitKey(0);
 
     std::cout << "TERMINATE" << std::endl;
 
