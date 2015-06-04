@@ -8,6 +8,7 @@ This small program is actually the rewritten code of some parts of another repos
 
 ## what it does
 It takes a stereo image pair, in this case given by the stereo camera rig Bumblebee2 and the corresponding reprojection matrix Q to calculate 3D Points from corresponding SIFT Features.
+The output, besides the stereo matching image, is a MATLAB conform BIN-File which can be used with my [3DPlot-Repository](https://github.com/solbach/3DPlot)
 
 ## usage
     $ ./stereo3Dcalculation <Left_Image_Path> <Right_Image_Path> <output.bin>
