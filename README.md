@@ -3,7 +3,7 @@
             src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
 </head>
-# Calculates 3D Points from a stereo image pair
+# 3D Point calculation from stereo-matching
 This small program is actually the rewritten code of some parts of another repository of mine ([6DOF Stereo EKF SLAM](https://github.com/srv/6dof_stereo_ekf_slam)) in C++ instead of MatLab.
 
 ## what it does
